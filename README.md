@@ -1,2 +1,2 @@
 # delivery-baiano-e20
-exemplo
+Projeto api de delivery para a aula de back end
