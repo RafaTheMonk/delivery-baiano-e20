@@ -44,6 +44,48 @@
                     <textarea name="endereco" id="endereco" rows="2" required></textarea>
                 </p>
             </fieldset>
+            <fieldset>
+                <legend>Itens</legend>
+                <p>
+                    <label for="qtd-acaraje">Acarajé (R$ 12,00)</label>
+                    <input type="number" id="qtd-acaraje" name="itens[acaraje]" min="0" max="20" value="0">
+                </p>
+                <p>
+                    <label for="qtd-bobo">Bobo de camarão (R$ 38,00)</label>
+                    <input type="number" id="qtd-bobo" name="itens[bobo]" min="0" max="20" value="0">
+                </p>
+                <p>
+                    <label for="qtd-abara">Abará (R$ 10,00)</label>
+                    <input type="number" id="qtd-abara" name="itens[abara]" min="0" max="20" value="0">
+                </p>
+                <p>
+                    <label for="qtd-vatapa">Vatapá (R$ 15,00)</label>
+                    <input type="number" id="qtd-vatapa" name="itens[vatapa]" min="0" max="20" value="0">
+                </p>
+                <p>
+                    <label for="qtd-cocada">Cocada (R$ 6,00)</label>
+                    <input type="number" id="qtd-cocada" name="itens[cocada]" min="0" max="20" value="0">
+                </p>
+                <p>
+                    <label for="qtd-moqueca-de-peixe">Moqueca de peixe (R$ 42,00)</label>
+                    <input type="number" id="qtd-moqueca-de-peixe" name="itens[moqueca-de-peixe]" min="0" max="20" value="0">
+                </p>
+            </fieldset>
+            <fieldset>
+                <legend>Pagamento</legend>
+                <p>
+                    <label for="">Forma de pagamento (na entrega)</label>
+                    <select name="forma_pagamento" id="pagamento" required>
+                        <option value="">Escolha</option>
+                        <option value="dinheiro">Dinheiro</option>
+                        <option value="pix">Pix</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="cupom">Cupom (opcional)</label>
+                    <input type="text" id="cupom" name="cupom" maxlength="20" placeholder="PRIMEIRA10">
+                </p>
+            </fieldset>
             <button type="submit">Enviar pedido</button>
         </form>
     </main>
