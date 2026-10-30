@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,14 +17,14 @@
     <main>
         <form action="/pedidos" method="post">
             <fieldset>
-                <legend>Seu dados</legend>
+                <legend>Seus dados</legend>
                 <p>
                     <label for="nome">Nome</label>
                     <input type="text" id="nome" name="nome" required>
                 </p>
                 <p>
-                    <label for="telefone">Telefone</label>
-                    <input type="tel" id="telefone" name="telefone" required>
+                    <label for="telefone">Telefone com DDD (só números)</label>
+                    <input type="tel" id="telefone" name="telefone" pattern="[0-9]{10,11}" required>
                 </p>
             </fieldset>
             <fieldset>
@@ -51,8 +51,8 @@
                     <input type="number" id="qtd-acaraje" name="itens[acaraje]" min="0" max="20" value="0">
                 </p>
                 <p>
-                    <label for="qtd-bobo">Bobo de camarão (R$ 38,00)</label>
-                    <input type="number" id="qtd-bobo" name="itens[bobo]" min="0" max="20" value="0">
+                    <label for="qtd-bobo-de-camarao">Bobó de camarão (R$ 38,00)</label>
+                    <input type="number" id="qtd-bobo-de-camarao" name="itens[bobo-de-camarao]" min="0" max="20" value="0">
                 </p>
                 <p>
                     <label for="qtd-abara">Abará (R$ 10,00)</label>
@@ -74,7 +74,7 @@
             <fieldset>
                 <legend>Pagamento</legend>
                 <p>
-                    <label for="">Forma de pagamento (na entrega)</label>
+                    <label for="pagamento">Forma de pagamento (na entrega)</label>
                     <select name="forma_pagamento" id="pagamento" required>
                         <option value="">Escolha</option>
                         <option value="dinheiro">Dinheiro</option>
