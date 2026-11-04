@@ -17,6 +17,10 @@ const qtdCocada = 1;
 const subtotal = PRECO_ACARAJE * qtdAcaraje + PRECO_ABARA * qtdAbara + PRECO_COCADA * qtdCocada;
 console.log(`Itens: ${reais.format(subtotal / 100)}`);
 
-// taxa e total: integrante 2
+// Taxa de entrega e total (taxa fixa por enquanto; por bairro na Aula 8)
+const TAXA_ENTREGA = 600;
+const total = subtotal + TAXA_ENTREGA;
+console.log(`Taxa:  ${reais.format(TAXA_ENTREGA / 100)}`);
+console.log(`Total: ${reais.format(total / 100)}`);
 
 // regras do pedido: integrante 3
