@@ -13,6 +13,8 @@ const PEDIDO_MINIMO = 3000;
 const qtds = [2, 1, 0, 0, 0, 1];
 const bairro = "Barra";
 const hora = 12;
+const primeiraCompra = false; // ainda sem cadastro: é um dado do cenário
+const cupom = "";
 
 // Subtotal: preço vezes quantidade, prato por prato
 let subtotal = 0;
@@ -54,7 +56,13 @@ if (taxa === 0) {
   const falta = PEDIDO_MINIMO - subtotal;
   console.log(`Recusado: faltam ${reais.format(falta / 100)} para o mínimo de ${reais.format(PEDIDO_MINIMO / 100)}.`);
 } else {
-  const total = subtotal + taxa;
+  // Cupom PRIMEIRA10: 10% nos itens, só na primeira compra; a taxa não tem desconto
+  const temDesconto = primeiraCompra && cupom === "PRIMEIRA10";
+  const desconto = temDesconto ? Math.round((subtotal * 10) / 100) : 0;
+  const total = subtotal - desconto + taxa;
+  if (desconto > 0) {
+    console.log(`Desconto: ${reais.format(-desconto / 100)}`);
+  }
   console.log(`Taxa:  ${reais.format(taxa / 100)}`);
   console.log(`Total: ${reais.format(total / 100)}`);
 }
