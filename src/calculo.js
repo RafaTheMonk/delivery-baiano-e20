@@ -3,27 +3,34 @@
 
 const reais = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
 
-// Preços do cardápio, em centavos
-const PRECO_ACARAJE = 1200;
-const PRECO_ABARA = 1000;
-const PRECO_COCADA = 600;
+// Cardápio: a posição de cada prato é a mesma nas duas listas
+const PRATOS = ["Acarajé", "Abará", "Moqueca de peixe", "Bobó de camarão", "Vatapá", "Cocada"];
+const PRECOS = [1200, 1000, 4200, 3800, 1500, 600]; // centavos
 
-// O pedido: quantas unidades de cada prato
-const qtdAcaraje = 2;
-const qtdAbara = 1;
-const qtdCocada = 1;
+// O pedido: quantas unidades de cada prato, na mesma ordem do cardápio
+const qtds = [2, 1, 0, 0, 0, 1];
 
-// Subtotal dos itens
-const subtotal = PRECO_ACARAJE * qtdAcaraje + PRECO_ABARA * qtdAbara + PRECO_COCADA * qtdCocada;
-console.log(`Itens: ${reais.format(subtotal / 100)}`);
+// Subtotal: preço vezes quantidade, prato por prato
+let subtotal = 0;
+let totalItens = 0;
+for (let i = 0; i < PRECOS.length; i++) {
+  if (qtds[i] === 0) {
+    continue; // prato que não foi pedido não aparece
+  }
+  subtotal += PRECOS[i] * qtds[i];
+  totalItens += qtds[i];
+  console.log(`  ${qtds[i]} x ${PRATOS[i]}`);
+}
+const palavra = totalItens === 1 ? "item" : "itens";
+console.log(`${totalItens} ${palavra}: ${reais.format(subtotal / 100)}`);
 
-// Taxa de entrega e total (taxa fixa por enquanto; por bairro na Aula 8)
+// Taxa de entrega e total (taxa fixa por enquanto)
 const TAXA_ENTREGA = 600;
 const total = subtotal + TAXA_ENTREGA;
 console.log(`Taxa:  ${reais.format(TAXA_ENTREGA / 100)}`);
 console.log(`Total: ${reais.format(total / 100)}`);
 
-// Regras do pedido: true ou false, ainda sem if (o if é da Aula 8)
+// Regras do pedido: true ou false, ainda sem if
 const PEDIDO_MINIMO = 3000;
 const hora = 12;
 const atingiuMinimo = subtotal >= PEDIDO_MINIMO;
