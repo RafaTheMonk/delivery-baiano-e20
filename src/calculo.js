@@ -7,9 +7,12 @@ const reais = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL
 const PRATOS = ["Acarajé", "Abará", "Moqueca de peixe", "Bobó de camarão", "Vatapá", "Cocada"];
 const PRECOS = [1200, 1000, 4200, 3800, 1500, 600]; // centavos
 
+const PEDIDO_MINIMO = 3000;
+
 // O pedido: quantas unidades de cada prato, na mesma ordem do cardápio
 const qtds = [2, 1, 0, 0, 0, 1];
 const bairro = "Barra";
+const hora = 12;
 
 // Subtotal: preço vezes quantidade, prato por prato
 let subtotal = 0;
@@ -40,19 +43,18 @@ switch (bairro) {
   case "Itapuã":
     taxa = 900;
     break;
-  default:
-    console.log(`Não entregamos em ${bairro}.`);
 }
-const total = subtotal + taxa;
-console.log(`Taxa:  ${reais.format(taxa / 100)}`);
-console.log(`Total: ${reais.format(total / 100)}`);
 
-// Regras do pedido: true ou false, ainda sem if
-const PEDIDO_MINIMO = 3000;
-const hora = 12;
-const atingiuMinimo = subtotal >= PEDIDO_MINIMO;
-const dentroDoHorario = hora >= 11 && hora < 22;
-const podeEnviar = atingiuMinimo && dentroDoHorario;
-console.log(`Atingiu o mínimo de ${reais.format(PEDIDO_MINIMO / 100)}? ${atingiuMinimo}`);
-console.log(`Dentro do horário? ${dentroDoHorario}`);
-console.log(`Pode enviar o pedido? ${podeEnviar}`);
+// Regras: mínimo sobre os itens, antes do desconto; 22:00 em ponto já recusa
+if (taxa === 0) {
+  console.log(`Recusado: não entregamos em ${bairro}.`);
+} else if (hora < 11 || hora >= 22) {
+  console.log("Recusado: pedidos só das 11h às 22h.");
+} else if (subtotal < PEDIDO_MINIMO) {
+  const falta = PEDIDO_MINIMO - subtotal;
+  console.log(`Recusado: faltam ${reais.format(falta / 100)} para o mínimo de ${reais.format(PEDIDO_MINIMO / 100)}.`);
+} else {
+  const total = subtotal + taxa;
+  console.log(`Taxa:  ${reais.format(taxa / 100)}`);
+  console.log(`Total: ${reais.format(total / 100)}`);
+}
