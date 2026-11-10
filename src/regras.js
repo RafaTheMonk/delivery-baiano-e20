@@ -8,7 +8,11 @@ const PEDIDO_MINIMO = 3000;
 
 // Soma preço vezes quantidade, prato por prato
 function calcularSubtotal(precos, qtds) {
-  return 0; // integrante 1
+  let subtotal = 0;
+  for (let i = 0; i < precos.length; i++) {
+    subtotal += precos[i] * qtds[i];
+  }
+  return subtotal;
 }
 
 // Taxa de entrega pelo bairro; 0 quer dizer que não entregamos lá
@@ -33,7 +37,10 @@ function motivoDaRecusa(pedido) {
 
 // Total: itens, menos o desconto, mais a taxa de entrega
 function calcularTotal(pedido) {
-  return 0; // integrante 1
+  const subtotal = calcularSubtotal(PRECOS, pedido.qtds);
+  const desconto = calcularDesconto(subtotal, pedido.cupom, pedido.primeiraCompra);
+  const taxa = calcularTaxa(pedido.bairro);
+  return subtotal - desconto + taxa;
 }
 
 module.exports = {
