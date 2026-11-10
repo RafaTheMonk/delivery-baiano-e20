@@ -33,7 +33,8 @@ function calcularTaxa(bairro) {
 
 // Cupom PRIMEIRA10: 10% nos itens, só na primeira compra
 function calcularDesconto(subtotal, cupom, primeiraCompra) {
-  return 0; // integrante 3
+  const valeCupom = cupom === "PRIMEIRA10" && primeiraCompra;
+  return valeCupom ? Math.round((subtotal * 10) / 100) : 0;
 }
 
 // Pedidos das 11h às 22h; 22h em ponto já recusa
@@ -43,7 +44,16 @@ function dentroDoHorario(hora) {
 
 // Devolve o motivo da recusa, ou "" quando o pedido pode seguir
 function motivoDaRecusa(pedido) {
-  return ""; // integrante 3
+  if (calcularTaxa(pedido.bairro) === 0) {
+    return `não entregamos em ${pedido.bairro}`;
+  }
+  if (!dentroDoHorario(pedido.hora)) {
+    return "pedidos só das 11h às 22h";
+  }
+  if (calcularSubtotal(PRECOS, pedido.qtds) < PEDIDO_MINIMO) {
+    return "abaixo do mínimo de R$ 30,00 em itens";
+  }
+  return "";
 }
 
 // Total: itens, menos o desconto, mais a taxa de entrega
