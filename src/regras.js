@@ -17,7 +17,18 @@ function calcularSubtotal(precos, qtds) {
 
 // Taxa de entrega pelo bairro; 0 quer dizer que não entregamos lá
 function calcularTaxa(bairro) {
-  return 0; // integrante 2
+  switch (bairro) {
+    case "Rio Vermelho":
+      return 500;
+    case "Barra":
+      return 600;
+    case "Pituba":
+      return 700;
+    case "Itapuã":
+      return 900;
+    default:
+      return 0;
+  }
 }
 
 // Cupom PRIMEIRA10: 10% nos itens, só na primeira compra
@@ -27,7 +38,7 @@ function calcularDesconto(subtotal, cupom, primeiraCompra) {
 
 // Pedidos das 11h às 22h; 22h em ponto já recusa
 function dentroDoHorario(hora) {
-  return false; // integrante 2
+  return hora >= 11 && hora < 22;
 }
 
 // Devolve o motivo da recusa, ou "" quando o pedido pode seguir
