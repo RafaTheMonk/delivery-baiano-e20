@@ -2,8 +2,8 @@
 // Dinheiro sempre em centavos inteiros.
 // Nenhuma função daqui escreve na tela: recebe dados e devolve um resultado.
 
-// Preços do cardápio da equipe, em centavos, na mesma ordem do index.html
-const PRECOS = [1200, 1000, 4200, 3800, 1500, 600];
+// Os preços agora vêm do cardápio
+const { buscarProduto } = require("./dados/cardapio.js");
 const PEDIDO_MINIMO = 3000;
 
 // Soma preço vezes quantidade, prato por prato
@@ -13,6 +13,11 @@ function calcularSubtotal(precos, qtds) {
     subtotal += precos[i] * qtds[i];
   }
   return subtotal;
+}
+
+// Soma os itens do pedido: [{ id, qtd }, ...], com o preço do cardápio
+function subtotalDosItens(itens) {
+  return itens.reduce((soma, item) => soma + buscarProduto(item.id).preco * item.qtd, 0);
 }
 
 // Taxa de entrega pelo bairro; 0 quer dizer que não entregamos lá
@@ -50,7 +55,7 @@ function motivoDaRecusa(pedido) {
   if (!dentroDoHorario(pedido.hora)) {
     return "pedidos só das 11h às 22h";
   }
-  if (calcularSubtotal(PRECOS, pedido.qtds) < PEDIDO_MINIMO) {
+  if (subtotalDosItens(pedido.itens) < PEDIDO_MINIMO) {
     return "abaixo do mínimo de R$ 30,00 em itens";
   }
   return "";
@@ -58,7 +63,7 @@ function motivoDaRecusa(pedido) {
 
 // Total: itens, menos o desconto, mais a taxa de entrega
 function calcularTotal(pedido) {
-  const subtotal = calcularSubtotal(PRECOS, pedido.qtds);
+  const subtotal = subtotalDosItens(pedido.itens);
   const desconto = calcularDesconto(subtotal, pedido.cupom, pedido.primeiraCompra);
   const taxa = calcularTaxa(pedido.bairro);
   return subtotal - desconto + taxa;
@@ -66,6 +71,7 @@ function calcularTotal(pedido) {
 
 module.exports = {
   calcularSubtotal,
+  subtotalDosItens,
   calcularTaxa,
   calcularDesconto,
   dentroDoHorario,
