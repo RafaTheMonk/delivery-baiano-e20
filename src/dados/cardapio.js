@@ -20,4 +20,4 @@ function listarAtivos() {
   return CARDAPIO.filter((produto) => produto.ativo);
 }
 
-module.exports = { CARDAPIO, buscarProduto, listarAtivos };
+export { CARDAPIO, buscarProduto, listarAtivos };

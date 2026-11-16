@@ -3,7 +3,7 @@
 // Nenhuma função daqui escreve na tela: recebe dados e devolve um resultado.
 
 // Os preços agora vêm do cardápio
-const { buscarProduto } = require("./dados/cardapio.js");
+import { buscarProduto } from "./dados/cardapio.js";
 const PEDIDO_MINIMO = 3000;
 
 // Soma preço vezes quantidade, prato por prato
@@ -69,7 +69,7 @@ function calcularTotal(pedido) {
   return subtotal - desconto + taxa;
 }
 
-module.exports = {
+export {
   calcularSubtotal,
   subtotalDosItens,
   calcularTaxa,
