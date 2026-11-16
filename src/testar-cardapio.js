@@ -1,7 +1,7 @@
 // src/testar-cardapio.js - confere o cardápio e as funções de consulta
 // Rodar na pasta do repositório: node src/testar-cardapio.js
 
-const { CARDAPIO, buscarProduto, listarAtivos } = require("./dados/cardapio.js");
+import { CARDAPIO, buscarProduto, listarAtivos } from "./dados/cardapio.js";
 
 console.log("Testando o cardápio...");
 

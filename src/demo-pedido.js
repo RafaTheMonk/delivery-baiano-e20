@@ -1,8 +1,8 @@
 // src/demo-pedido.js - monta pedidos com as classes Produto e Pedido
 // Rodar na pasta do repositório: node src/demo-pedido.js
 
-const Produto = require("./models/Produto.js");
-const Pedido = require("./models/Pedido.js");
+import Produto from "./models/Produto.js";
+import Pedido from "./models/Pedido.js";
 const reais = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
 
 const acaraje = new Produto(1, "Acarajé", 1200, 30);
