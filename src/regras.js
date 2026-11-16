@@ -77,4 +77,5 @@ module.exports = {
   dentroDoHorario,
   motivoDaRecusa,
   calcularTotal,
+  PEDIDO_MINIMO,
 };
