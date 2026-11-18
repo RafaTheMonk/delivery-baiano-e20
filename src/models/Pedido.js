@@ -44,6 +44,21 @@ class Pedido {
     }
   }
 
+  // Um objeto simples, que o JSON consegue gravar: o JSON não enxerga o #itens
+  paraObjeto() {
+    return {
+      bairro: this.bairro,
+      hora: this.hora,
+      itens: this.#itens.map((item) => ({
+        id: item.produto.id,
+        nome: item.produto.nome,
+        qtd: item.qtd,
+        precoUnitario: item.precoUnitario,
+      })),
+      total: this.total(),
+    };
+  }
+
   // Total: itens, menos o desconto, mais a taxa. Valida antes.
   total() {
     this.validar();
