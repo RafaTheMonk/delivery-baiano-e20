@@ -1,0 +1,7 @@
+﻿id;nome;preco;estoque;ativo
+1;Acarajé;12,00;30;sim
+2;Abará;10,00;20;sim
+3;Moqueca de peixe;42,00;8;sim
+4;Bobó de camarão;38,00;0;não
+5;Vatapá;15,00;15;sim
+6;Cocada;6,00;40;sim

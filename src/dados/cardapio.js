@@ -1,14 +1,9 @@
-// src/dados/cardapio.js - o cardápio da Dona Ju como array de objetos
+// src/dados/cardapio.js - o cardápio da Dona Ju, lido da planilha cardapio.csv
 // preco em centavos; estoque: quantos tem hoje; ativo: aparece no cardápio hoje
+import path from "node:path";
+import { lerCardapioCsv } from "./importarCardapio.js";
 
-const CARDAPIO = [
-  { id: 1, nome: "Acarajé", preco: 1200, estoque: 30, ativo: true },
-  { id: 2, nome: "Abará", preco: 1000, estoque: 20, ativo: true },
-  { id: 3, nome: "Moqueca de peixe", preco: 4200, estoque: 8, ativo: true },
-  { id: 4, nome: "Bobó de camarão", preco: 3800, estoque: 0, ativo: false },
-  { id: 5, nome: "Vatapá", preco: 1500, estoque: 15, ativo: true },
-  { id: 6, nome: "Cocada", preco: 600, estoque: 40, ativo: true },
-];
+const CARDAPIO = await lerCardapioCsv(path.join(import.meta.dirname, "cardapio.csv"));
 
 // Devolve o produto com esse id, ou undefined se não existir
 function buscarProduto(id) {
