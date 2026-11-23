@@ -27,6 +27,7 @@ Os pedidos ficam em data/pedidos.json (fora do Git: cada máquina tem os seus).
 
     node src/salvar-pedido.js    # grava um pedido novo, com o próximo número
     node src/listar-pedidos.js   # mostra os pedidos gravados
+    node src/relatorios/exportarCsv.js   # gera data/relatorio-pedidos.csv para abrir no Excel
 
 ## Testes manuais (Aula 14)
 
