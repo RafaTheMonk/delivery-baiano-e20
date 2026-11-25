@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/demo-pedido.js",
     "dev": "node --watch src/demo-pedido.js",
-    "test": "node src/testar-regras.js && node src/testar-cardapio.js"
+    "test": "node src/testar-regras.js && node src/testar-cardapio.js",
+    "api": "node --watch src/server.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/RafaTheMonk/delivery-baiano-e20#readme",
   "dependencies": {
-    "dayjs": "^1.11.23"
+    "dayjs": "^1.11.23",
+    "express": "^5.3.0"
   }
 }
